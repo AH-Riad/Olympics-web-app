@@ -26,11 +26,10 @@ env/
 *.venv
 
 # IDE / editor files
-*.idea/
-*.iml/
+.idea/
+.iml/
 .vscode/
-*.xml/
-*.iml/
+.xml/
 # OS generated files
 .DS_Store
 Thumbs.db
