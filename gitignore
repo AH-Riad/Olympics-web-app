@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+.env/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Large data / ML files
+*.h5
+*.csv
+*.zip
+*.tar.gz
+*.npy
+*.venv
+
+# IDE / editor files
+*.idea/
+*.iml/
+.vscode/
+*.xml/
+*.iml/
+# OS generated files
+.DS_Store
+Thumbs.db
