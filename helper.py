@@ -1,3 +1,5 @@
+import numpy as np
+
 def medal_tally(df):
     medal_tally = df.drop_duplicates(subset=["Team", "NOC", "Games", "Year", "City", "Sport", "Event", "Medal"])
 
@@ -12,7 +14,7 @@ def medal_tally(df):
 
     return medal_tally
 
-def count_year_list(df):
+def country_year_list(df):
     years = df['Year'].unique().tolist()
     years.sort()
     years.insert(0, 'Overall')
