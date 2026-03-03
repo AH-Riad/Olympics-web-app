@@ -5,6 +5,8 @@ from helper import medal_tally
 
 df = preprocessor.preprocess()
 
+st.sidebar.title("Olympics Analysis")
+
 user_menue = st.sidebar.radio(
     "Select an Option",
     ("Medal Tally", "Overall Analysis", "Country-wise-Analysis", "Athlete wise Analysis")
@@ -13,5 +15,9 @@ user_menue = st.sidebar.radio(
 st.dataframe(df.head())
 
 if user_menue == "Medal Tally":
+    st.sidebar.header("Medal Tally")
+    years, country = helper.country_year_list(df)
+    selected_years = st.sidebar.selectbox("Select Year", years)
+    selected_country = st.sidebar.selectbox("Select Country", country)
     medal_tally = helper.medal_tally(df)
     st.dataframe(medal_tally)
