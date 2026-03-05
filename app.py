@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import preprocessor, helper
 from helper import medal_tally
+import plotly.express as px
 
 df = preprocessor.preprocess()
 
@@ -63,3 +64,10 @@ if user_menue == "Overall Analysis":
     with col3:
         st.header("Athletes")
         st.title(athletes)
+
+
+nations_over_time = helper.participating_nations_over_time(df)
+
+fig = px.line(nations_over_time, x="Edition", y="No of Countries")
+
+st.plotly_chart(fig)
