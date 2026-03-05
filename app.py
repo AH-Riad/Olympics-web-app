@@ -67,46 +67,35 @@ if user_menue == "Overall Analysis":
         st.header("Athletes")
         st.title(athletes)
 
+    # ---------------------------
+    # All graphs are now inside this block
+    # ---------------------------
+    nations_over_time = helper.data_over_time(df, 'region')
+    fig = px.line(nations_over_time, x="Edition", y="region")
+    st.title("Participating Nations Over Time")
+    st.plotly_chart(fig)
 
-nations_over_time = helper.data_over_time(df, 'region')
+    events_over_time = helper.data_over_time(df, 'Event')
+    fig = px.line(events_over_time, x="Edition", y="Event")
+    st.title("Events Over Time")
+    st.plotly_chart(fig)
 
-fig = px.line(nations_over_time, x="Edition", y="region")
+    athletes_over_time = helper.data_over_time(df, 'Name')
+    fig = px.line(athletes_over_time, x="Edition", y="Name")
+    st.title("Athletes Over Time")
+    st.plotly_chart(fig)
 
-st.title("Participating Nations Over Time")
+    st.title("No. of Events over time(Every Sport)")
+    fig, ax = plt.subplots(figsize=(20, 20))
+    x = df.drop_duplicates(['Year', 'Sport', 'Event'])
 
-st.plotly_chart(fig)
-
-
-events_over_time = helper.data_over_time(df, 'Event')
-
-fig = px.line(events_over_time, x="Edition", y="Event")
-
-st.title("Events Over Time")
-
-st.plotly_chart(fig)
-
-
-athletes_over_time = helper.data_over_time(df, 'Name')
-
-fig = px.line(athletes_over_time, x="Edition", y="Name")
-
-st.title("Athletes Over Time")
-
-st.plotly_chart(fig)
-
-
-st.title("No. of Events over time(Every Sport)")
-fig, ax = plt.subplots(figsize=(20, 20))
-x = df.drop_duplicates(['Year', 'Sport', 'Event'])
-
-sns.heatmap(
-    x.pivot_table(
-        index="Sport",
-        columns="Year",
-        values="Event",
-        aggfunc="count"
-    ).fillna(0).astype(int),
-    annot=True
-)
-
-st.pyplot(fig)
+    sns.heatmap(
+        x.pivot_table(
+            index="Sport",
+            columns="Year",
+            values="Event",
+            aggfunc="count"
+        ).fillna(0).astype(int),
+        annot=True
+    )
+    st.pyplot(fig)
