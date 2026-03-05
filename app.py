@@ -99,3 +99,7 @@ if user_menue == "Overall Analysis":
         annot=True
     )
     st.pyplot(fig)
+
+    st.title("Most Successful Athletes")
+    x = helper.most_successful(df, 'Overall')
+    st.table(x)
