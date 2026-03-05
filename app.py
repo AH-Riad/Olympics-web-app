@@ -22,6 +22,14 @@ if user_menue == "Medal Tally":
     medal_tally = helper.fetch_medal_tally(df, selected_year, selected_country)
     if selected_year == "Overall" and selected_country == "Overall":
         st.title("Overall Tally")
-    if selected_year == "Overall" and selected_country == "Overall":
 
-        st.dataframe(medal_tally)
+    if selected_year != "Overall" and selected_country == "Overall":
+        st.title("Medal Tally in "+ str(selected_year)+ " Olympics")
+
+    if selected_year == "Overall" and selected_country != "Overall":
+        st.title(selected_country + " overall performance")
+
+    if selected_year != "Overall" and selected_country != "Overall":
+        st.title(selected_country + " performance in " + str(selected_year) + " Olympics")
+
+    st.table(medal_tally)
