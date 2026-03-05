@@ -3,6 +3,8 @@ import pandas as pd
 import preprocessor, helper
 from helper import medal_tally
 import plotly.express as px
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 df = preprocessor.preprocess()
 
@@ -91,3 +93,20 @@ fig = px.line(athletes_over_time, x="Edition", y="Name")
 st.title("Athletes Over Time")
 
 st.plotly_chart(fig)
+
+
+st.title("No. of Events over time(Every Sport)")
+fig, ax = plt.subplots(figsize=(20, 20))
+x = df.drop_duplicates(['Year', 'Sport', 'Event'])
+
+sns.heatmap(
+    x.pivot_table(
+        index="Sport",
+        columns="Year",
+        values="Event",
+        aggfunc="count"
+    ).fillna(0).astype(int),
+    annot=True
+)
+
+st.pyplot(fig)
