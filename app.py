@@ -101,5 +101,11 @@ if user_menue == "Overall Analysis":
     st.pyplot(fig)
 
     st.title("Most Successful Athletes")
-    x = helper.most_successful(df, 'Overall')
+    sports_list = df['Sport'].unique().tolist()
+    sports_list.sort()
+    sports_list.insert(0, 'Overall')
+
+    selected_sports = st.selectbox("Select Sport", sports_list)
+
+    x = helper.most_successful(df, selected_sports)
     st.table(x)
